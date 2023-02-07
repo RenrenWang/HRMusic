@@ -1,0 +1,21 @@
+function formatCount(count) {
+  var counter = parseInt(count) // 在wxs中ParseInt是全局方法，不需要写Math.
+  if (counter > 100000000) {
+    return (counter / 100000000).toFixed(1) + "亿"
+  } else if (counter > 10000) {
+    return (counter / 10000).toFixed(1) + "万"
+  } else return counter + ""
+}
+
+function formatDuration(duration) {
+  newDuration = duration / 1000
+  var minute = Math.floor(newDuration / 60) // floor不是wxs中的全局方法
+  var secord = Math.floor(newDuration) % 60
+  return minute + ":" + secord
+}
+
+//commonJs导出方式，不支持es6的export
+module.exports = {
+  formatCount: formatCount, // 也不支持对象的增强写法
+  formatDuration: formatDuration
+}
